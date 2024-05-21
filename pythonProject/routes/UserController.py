@@ -8,7 +8,7 @@ User_router = APIRouter()
 
 @User_router.post("/signIn")
 async def signin(user: User):
-    is_sign_in = await UserService.signin(user)
+    is_sign_in = await UserService.sign_in(user)
     if is_sign_in:
         return "you were signed in successfully"
     raise HTTPException(status_code=404, detail="this user is not exist")
@@ -16,7 +16,7 @@ async def signin(user: User):
 
 @User_router.post("/signUp")
 async def signup(user: User):
-    is_sign_up =await UserService.signup(user)
+    is_sign_up =await UserService.sign_up(user)
     if is_sign_up:
         return "you were signed up successfully"
     raise HTTPException(status_code=400, detail="one or more of your details was not valid, please try again")

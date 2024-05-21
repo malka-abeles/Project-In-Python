@@ -7,44 +7,20 @@ from typing import List
 Operation_router = APIRouter()
 
 
-# @router.post("/")
-# async def signin(user: User):
-#     is_sign_in = await UserService.signin(user)
-#     if is_sign_in:
-#         return "you were signed in successfully"
-#     raise HTTPException(status_code=404, detail="this user is not exist")
-#
-#
-# @router.put("/")
-# async def signup(user: User):
-#     is_sign_up =await UserService.signup(user)
-#     if is_sign_up:
-#         return "you were signed up successfully"
-#     raise HTTPException(status_code=400, detail="one or more of your details was not valid, please try again")
-#
-#
-# @router.put("/setProfile/{id}")
-# async def update_profile(user_id: int, user: User):
-#     is_updated = await UserService.update_user_profile(user_id, user)
-#     if is_updated:
-#         return "your profile were updated successfully"
-#     raise HTTPException(status_code=400, detail="one or more of your details was not valid, please try again")
-
-
 @Operation_router.put("/update")
 async def update_operation(operation_id: int, operation: Operation):
     is_update = await OperationService.update(operation_id, operation)
     if is_update:
-        return operation
+        return "operation were updated successfully"
     else:
         raise HTTPException(status_code=404, detail="Operation not found")
 
 
 @Operation_router.delete("/delete")
-async def delete_operation(operation_id: int, operation: Operation):
+async def delete_operation(operation_id: int):
     is_delete = await OperationService.delete(operation_id)
     if is_delete:
-        return operation
+        return
     else:
         raise HTTPException(status_code=404, detail="Operation not found")
 
@@ -67,6 +43,6 @@ async def get_operation(user_id: int):
 async def create_operation(operation: Operation):
     is_create = await OperationService.create(operation)
     if is_create:
-        return "nn"
+        return "operation added successfully"
     else:
         raise HTTPException(status_code=404, detail="Operation not found")
